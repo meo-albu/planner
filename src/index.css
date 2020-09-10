@@ -21,3 +21,14 @@ code {
 h1, h2, h3, h4 {
   font-weight: 700;
 }
+
+a {
+  text-decoration: none;
+  color: inherit
+}
+
+a:focus,
+a:active,
+a:visited {
+  color: inherit;
+}

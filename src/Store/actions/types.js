@@ -1,0 +1,11 @@
+const types = {
+  DARK_THEME: 'DARK_THEME',
+  LIGHT_THEME: 'LIGHT_THEME',
+  SET_LOADER: 'SET_LOADER',
+  STOP_LOADER: 'STOP_LOADER',
+  SET_USER: 'SET_USER',
+  LOGIN_USER: 'LOGIN_USER',
+  LOGOUT_USER: 'LOGOUT_USER',
+}
+
+export default types

@@ -1,10 +1,12 @@
 import React from 'react'
 import { AuthImage } from './AuthImage';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
 
 export const UiContainer = ({children}) => {
+  const darkTheme = useSelector(state => state.themeReducer.darkTheme)
   return (
-    <Container>
+    <Container darkTheme={darkTheme}>
       <div>
         <div className="image">
           <AuthImage />
@@ -23,15 +25,27 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f9f9f9;
+  background: ${({theme}) => theme.background};
+  padding-top: 65px;
+  color: ${({theme}) => theme.color};
+
+  @media only screen and (max-width: 700px) {
+    display: block;
+    }
 
   >div {
-    background: #fff;
-    box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.1);
+    background: ${({theme}) => theme.background};
+    box-shadow: 3px 3px 20px ${({theme}) => theme.shadow};
     padding: 50px;
     display: flex;
     align-items: center;
-    border-radius: 30px;
+    border-radius: 10px;
+
+    @media only screen and (max-width: 700px) {
+      display: block;
+      padding: 50px 5%;
+      width: 100%;
+    }
 
     >div {
       width: 300px;
@@ -39,11 +53,20 @@ const Container = styled.div`
 
     .form {
       width: 270px;
+
+      @media only screen and (max-width: 700px) {
+        width: 100%;
+      }
     }
   }
 
   .image {
     margin-right: 50px;
+
+    @media only screen and (max-width: 700px) {
+      margin: 0 auto 20px;
+      width: 150px;
+    }
   }
 
   >svg {
@@ -59,11 +82,7 @@ const Container = styled.div`
   }
 
   .form {
-    h3 {
-      font-weight: 700;
-      font-style: italic;
-    }
-
+    .username,
     .email,
     .password {
       position: relative;
@@ -83,14 +102,17 @@ const Container = styled.div`
         transition: 0.3s;
         left: 30px;
         pointer-events: none;
+        color: ${({theme}) => theme.color}
       }
 
       input {
+        background: transparent;
         border: 0;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+        border-bottom: 1px solid ${({darkTheme}) => darkTheme ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.2)'};
         display: block;
         width: 100%;
         padding: 10px 30px;
+        color: ${({theme}) => theme.color};
 
         ::placeholder {
           opacity: 0;
@@ -106,10 +128,11 @@ const Container = styled.div`
         }
       }
     }
+
     input[type="submit"] {
       padding: 10px 30px;
       border: 0;
-      background: #0061C1;
+      background: ${({theme}) => theme.primary};
       color: #fff;
       border-radius: 3px;
       cursor: pointer;
@@ -129,6 +152,7 @@ const Container = styled.div`
       }
       
       span {
+        color: ${({theme}) => theme.color};
         opacity: 0.5;
       }
 
@@ -138,7 +162,6 @@ const Container = styled.div`
     }
     
     .flex {
-      margin-top: 30px;
       display: flex;
       align-items: center;
       justify-content: space-between;
