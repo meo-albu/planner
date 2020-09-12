@@ -45,6 +45,7 @@ const Container = styled.div`
       display: block;
       padding: 50px 5%;
       width: 100%;
+      box-shadow: none;
     }
 
     >div {
@@ -52,7 +53,7 @@ const Container = styled.div`
     }
 
     .form {
-      width: 270px;
+      width: 300px;
 
       @media only screen and (max-width: 700px) {
         width: 100%;

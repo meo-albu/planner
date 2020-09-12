@@ -49,6 +49,7 @@ const Container = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
+  height: calc(var(--vh, 1vh) * 100);
   background: rgba(0, 0, 0, 0.95);
   z-index: 100;
   display: flex;

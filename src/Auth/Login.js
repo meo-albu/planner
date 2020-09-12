@@ -7,9 +7,11 @@ import {setLoader, stopLoader} from '../Store/actions/loaderActions'
 import styled from 'styled-components';
 import { loginUser } from '../Store/actions/userActions';
 import { Redirect } from 'react-router-dom';
+import { Loader } from '../Components/Loader';
 
 export const Login = () => {
   const loggedIn = useSelector(state => state.userReducer.loggedIn)
+  const loading = useSelector(state => state.loaderReducer.loading)
   const [error, setError] = useState({
     code: null,
     message: null
@@ -73,6 +75,10 @@ export const Login = () => {
       })
       dispatch(stopLoader())
     });
+  }
+
+  if(loading) {
+    return <Loader />
   }
 
   return (

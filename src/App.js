@@ -1,14 +1,13 @@
 import React, { useEffect } from 'react';
 import { Header } from './Components/Header/Header';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Login } from './Auth/Login'
-import { Signup } from './Auth/Signup'
+import { BrowserRouter as Router} from "react-router-dom";
 import { ThemeProvider } from 'styled-components'
 import { useSelector, useDispatch } from 'react-redux';
 import { Loader } from './Components/Loader'
 import app from './Auth/firebase';
 import {setUser} from './Store/actions/userActions'
 import { setLoader, stopLoader } from './Store/actions/loaderActions';
+import { Routes } from './Routes/Routes';
 
 function App() {
   const theme = useSelector(state => state.themeReducer.theme)
@@ -36,10 +35,7 @@ function App() {
       {loading && <Loader />}
       <Router>
         <Header />
-        <Switch>
-          <Route path="/login" component={Login} />
-          <Route path="/signup" component={Signup} />
-        </Switch>
+        <Routes />
       </Router>
     </ThemeProvider>
   );

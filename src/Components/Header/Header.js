@@ -14,8 +14,8 @@ export const Header = () => {
       <Logo>Planner</Logo>
 
       {loggedIn 
-        ?  <Button onClick={() => app.auth().signOut().then(() => dispatch(logoutUser()))} >Logout</Button> 
-        : <div><Link to="/login" style={{marginRight: '15px'}}>Login</Link> <Button><Link to="/signup">Signup</Link></Button></div>
+        ? <Button onClick={() => app.auth().signOut().then(() => dispatch(logoutUser()))} >Logout</Button> 
+        : <div><Link to="/login" style={{marginRight: '15px'}}>Login</Link> <Link to="/signup"><Button>Signup</Button></Link></div>
         }
     </Container>
   )
@@ -34,6 +34,7 @@ const Container = styled.div`
   box-shadow: 0 0 10px ${({theme}) => theme.shadow};
   color: ${({theme}) => theme.color};
   font-size: 14px;
+  z-index: 99;
 
   @media only screen and (max-width: 700px) {
     padding: 20px 5%;
