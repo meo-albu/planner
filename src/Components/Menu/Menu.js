@@ -58,6 +58,10 @@ const Button = styled.button`
   align-items: center;
   color: ${({darkTheme}) => darkTheme ? 'rgba(255, 255, 255, 0.6)' : 'rgba(0, 0, 0, 0.5)' };
 
+  &>* {
+    pointer-events: none;
+  }
+
   :hover {
     background: ${({darkTheme}) => darkTheme ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)' };
   }

@@ -1,16 +1,22 @@
-import React from 'react'
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components'
 import { Menu } from '../Components/Menu/Menu'
 import { SidebarContainer } from '../Components/Sidebar/SidebarContainer';
 import { closeCalendar, closeTasks, closeUserSettings } from '../Store/actions/sidebarActions';
 import Tasks from '../Components/Tasks/Tasks';
 import { UserSettings } from '../Components/UserSettings/UserSettings';
+import { getTasks } from '../Store/actions/taskActions';
 let vh = window.innerHeight * 0.01;
 document.documentElement.style.setProperty('--vh', `${vh}px`);
 
 export const Main = () => {
   const {tasks, calendar, userSettings} = useSelector(state => state.sidebarReducer)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getTasks())
+  }, [dispatch])
 
   return (
     <Container>

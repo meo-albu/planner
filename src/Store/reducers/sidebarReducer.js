@@ -1,7 +1,7 @@
 import types from '../actions/types'
 
 const defaultState = {
-  tasks: false,
+  tasks: true,
   calendar: false,
   userSettings: false
 }

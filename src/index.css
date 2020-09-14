@@ -8,6 +8,10 @@
   transition: background 0.5s;
 }
 
+*:focus {
+  outline: 0;
+}
+
 body {
   margin: 0;
   font-family: 'Montserrat', sans-serif;

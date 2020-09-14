@@ -5,16 +5,20 @@ import App from './App';
 import {Provider} from 'react-redux'
 import rootReducer from './Store/reducers'
 // eslint-disable-next-line
-import {createStore} from 'redux'
+import {createStore, applyMiddleware, compose} from 'redux'
+import thunk from 'redux-thunk'
 
-const screen = window.screen.availWidth
+// const screen = window.screen.availWidth
 let store = ''
 
-if(screen > 700) {
-  store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
-} else {
-  store = createStore(rootReducer)
-}
+// if(screen > 700) {
+//   store = createStore(rootReducer, compose(
+//     applyMiddleware(thunk),
+//     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+//   ))
+// } else {
+// }
+store = createStore(rootReducer, applyMiddleware(thunk))
 
 ReactDOM.render(
   <Provider store={store}>
