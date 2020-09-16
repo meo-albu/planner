@@ -8,17 +8,17 @@ import rootReducer from './Store/reducers'
 import {createStore, applyMiddleware, compose} from 'redux'
 import thunk from 'redux-thunk'
 
-// const screen = window.screen.availWidth
+const screen = window.screen.availWidth
 let store = ''
 
-// if(screen > 700) {
-//   store = createStore(rootReducer, compose(
-//     applyMiddleware(thunk),
-//     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-//   ))
-// } else {
-// }
-store = createStore(rootReducer, applyMiddleware(thunk))
+if(screen > 700) {
+  store = createStore(rootReducer, compose(
+    applyMiddleware(thunk),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  ))
+} else {
+  store = createStore(rootReducer, applyMiddleware(thunk))
+}
 
 ReactDOM.render(
   <Provider store={store}>
