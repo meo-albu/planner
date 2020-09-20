@@ -26,8 +26,6 @@ export const Login = () => {
     app.auth().signInWithPopup(provider)
     .then((user) => {
       if(user) {
-        console.log(user)
-        localStorage.setItem('access_token', user.credential.accessToken)
         const {displayName, email, photoURL} = user
         dispatch(loginUser({
           username: displayName,
