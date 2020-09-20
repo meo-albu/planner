@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from "@fullcalendar/interaction"
@@ -8,18 +8,67 @@ import styled from 'styled-components';
 import { NoEventImage } from './NoEventImage';
 import CloseEditIcon from '../Tasks/Icons/CloseEditIcon';
 import { useSelector } from 'react-redux';
+import { gapi } from 'gapi-script';
 
-export const CalendarContainer = ({events}) => {
+export const CalendarContainer = () => {
 
   const theme = useSelector(state => state.themeReducer.theme)
   const darktheme = useSelector(state => state.themeReducer.darkTheme)
 
   const [event, setEvent] = useState(null)
+  const [events, setEvents] = useState(null)
+  const [authorized, setAuthorized] = useState(false)
+
+  useEffect(() => {
+    if(localStorage.getItem('access_token')) setAuthorized(true)
+  }, [])
 
   const handleClick = (args) => {
     console.log(args.event)
     setEvent(args.event)
   }
+
+  const authorizeUser = () => {
+    gapi.load('client', () => {
+      gapi.client.init({"apiKey" : process.env.REACT_APP_FIREBASE_API_KEY})
+      .then(() => {
+        gapi.auth.authorize({
+          "client_id":"333994889676-qlfics4h77ugj7to0usjr25bn62bdac1.apps.googleusercontent.com",
+          'discoveryDocs': ['https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'],
+          'scope'    : 'https://www.googleapis.com/auth/calendar.events.readonly',
+          'immediate': false
+        }).then((cl) => {
+          if(cl) {
+            localStorage.setItem('access_token', cl.access_token)
+            setAuthorized(true)
+          }
+        })
+      })
+    })
+  }
+
+  useEffect(() => {
+    if(localStorage.getItem('access_token'))
+      gapi.load('client', () => {
+        gapi.client.setToken({'access_token': localStorage.getItem('access_token')})
+        let ev = []
+        gapi.client.load('calendar', 'v3', async () => {
+          const events = await gapi.client.calendar.events.list({
+            calendarId: 'primary',
+            timeMin: new Date().toISOString()
+          })
+
+          events.result.items.forEach(event => {
+            ev.push({
+              title: event.summary,
+              start: event.start.dateTime,
+              end: event.end.dateTime
+            })
+          })
+          setEvents(ev)
+        })
+      })
+  }, [authorized])
 
   return (
     <Container>
@@ -28,9 +77,11 @@ export const CalendarContainer = ({events}) => {
           initialView="dayGridMonth"
           events={events}
           eventClick={handleClick}
-        />
+          />
 
-        {event ? 
+      {authorized ? 
+
+        event ? 
           <Event>
             <div onClick={() => setEvent(null)}>
               <CloseEditIcon />
@@ -44,17 +95,45 @@ export const CalendarContainer = ({events}) => {
             </p>
           </Event>
 
-          : <div style={{textAlign: "center", paddingBottom: '30px'}}>
+        : <div style={{textAlign: "center", paddingBottom: '30px'}}>
             <NoEventImage />
             Select an event in calendar to see more details
           </div>
-        }
 
-
+      : <Permission>
+          <p>Planner needs permission to access your Google Calendar</p>
+          <button onClick={authorizeUser}>Authorize</button>
+        </Permission>}
 
     </Container>
   )
 }
+
+const Permission = styled.div`
+  margin-top: 25px;
+  padding: 10px 15px 25px;
+  font-size: 14px;
+  
+  p {
+    margin: 0 0 20px;
+    text-align: center;
+  }
+
+  button {
+    padding: 7px 15px;
+    border-radius: 3px;
+    border: 0;
+    background: ${({theme}) => theme.primary};
+    color: white;
+    display: block;
+    margin: 0 auto;
+    cursor: pointer;
+
+    :hover {
+      background: ${({theme}) => theme.secondary};
+    }
+  }
+`
 
 const Event = styled.div`
   margin-top: 25px;
@@ -104,7 +183,7 @@ const Container = styled.div`
   &:hover {
       &::-webkit-scrollbar-thumb {
         border-radius: 5px;
-        background: ${({darkTheme}) => darkTheme ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.2)' };
+        background: ${({darkTheme}) => darkTheme ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)' };
       }
     }
 
@@ -115,7 +194,7 @@ const Container = styled.div`
     &::-webkit-scrollbar-thumb {
         transition: 0.5s;
         border-radius: 5px;
-        background: ${({darkTheme}) => darkTheme ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)' };
+        background: ${({darkTheme}) => darkTheme ? 'rgba(255, 255, 255, 0.02)' : 'rgba(0, 0, 0, 0.02)' };
     }
 
   .fc * {
@@ -181,7 +260,7 @@ const Container = styled.div`
     &:hover {
       &::-webkit-scrollbar-thumb {
         border-radius: 5px;
-        background: ${({darkTheme}) => darkTheme ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.2)' };
+        background: ${({darkTheme}) => darkTheme ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)' };
       }
     }
 
@@ -192,7 +271,7 @@ const Container = styled.div`
     &::-webkit-scrollbar-thumb {
         transition: 0.5s;
         border-radius: 5px;
-        background: ${({darkTheme}) => darkTheme ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)' };
+        background: ${({darkTheme}) => darkTheme ? 'rgba(255, 255, 255, 0.02)' : 'rgba(0, 0, 0, 0.02)' };
     }
   }
 `

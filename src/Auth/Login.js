@@ -26,6 +26,8 @@ export const Login = () => {
     app.auth().signInWithPopup(provider)
     .then((user) => {
       if(user) {
+        console.log(user)
+        localStorage.setItem('access_token', user.credential.accessToken)
         const {displayName, email, photoURL} = user
         dispatch(loginUser({
           username: displayName,
@@ -37,9 +39,6 @@ export const Login = () => {
 
       }))
       dispatch(stopLoader())
-      // const token = result.credential.accessToken;
-      // const user = result.user;
-      // console.log(result.user.photoURL)
     }).catch((error) => {
       setError({
         code: error.code,
