@@ -9,6 +9,7 @@ import { UserSettings } from '../Components/UserSettings/UserSettings';
 import { getTasks } from '../Store/actions/taskActions';
 
 import { CalendarContainer } from '../Components/Calendar/CalendarContainer';
+import { Weather } from '../Weather/Weather';
 
 let vh = window.innerHeight * 0.01;
 document.documentElement.style.setProperty('--vh', `${vh}px`);
@@ -33,6 +34,8 @@ export const Main = () => {
       <SidebarContainer isOpen={userSettings} close={closeUserSettings}>
         <UserSettings />
       </SidebarContainer>
+
+      <Weather />
     </Container>
   )
 }
@@ -40,8 +43,12 @@ export const Main = () => {
 const Container = styled.div`
   background: ${({theme}) => theme.background};
   color: ${({theme}) => theme.color};
-  padding: 100px 10% 30px;
+  padding: 130px 10% 30px;
   position:relative;
   height: 100vh;
   height: calc(var(--vh, 1vh) * 100);
+
+  @media only screen and (max-width: 700px) {
+    padding: 100px 5% 30px 65px;
+  }
 `
