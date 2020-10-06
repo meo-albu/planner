@@ -11,7 +11,7 @@ const Container = styled.div`
   border-radius: 10px;
   background: ${({theme}) => theme.shadow};
   position: relative;
-  margin: 10px auto;
+  margin: 0 auto 10px;
 
   :before {
     position: absolute;

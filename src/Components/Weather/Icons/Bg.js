@@ -18,6 +18,7 @@ export default Bg
 const Container = styled.svg`
   position: absolute;
   z-index: -1;
-  left: 0;
-  width: 100%;
+  left: 10px;
+  top: 25%;
+  width: 95%;
 `

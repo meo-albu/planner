@@ -59,7 +59,9 @@ const Weather = () => {
   return (
     <Container>
       {WeatherLocation.lat ? 
-        forecast && <Forecast forecast={forecast} />
+        forecast && <Forecast forecast={forecast}>
+           <button onClick={() => setWeatherLocation('')}>change city</button>
+        </Forecast>
         :
         <>
           <WeatherImg />
