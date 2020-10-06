@@ -35,3 +35,15 @@ export const closeUserSettings = () => {
     type: types.CLOSE_USER_SETTINGS
   }
 }
+
+export const openWeather = () => {
+  return {
+    type: types.OPEN_WEATHER
+  }
+}
+
+export const closeWeather = () => {
+  return {
+    type: types.CLOSE_WEATHER
+  }
+}

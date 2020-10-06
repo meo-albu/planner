@@ -3,19 +3,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components'
 import { Menu } from '../Components/Menu/Menu'
 import { SidebarContainer } from '../Components/Sidebar/SidebarContainer';
-import { closeCalendar, closeTasks, closeUserSettings } from '../Store/actions/sidebarActions';
+import { closeCalendar, closeTasks, closeUserSettings, closeWeather } from '../Store/actions/sidebarActions';
 import Tasks from '../Components/Tasks/Tasks';
 import { UserSettings } from '../Components/UserSettings/UserSettings';
 import { getTasks } from '../Store/actions/taskActions';
 
 import { CalendarContainer } from '../Components/Calendar/CalendarContainer';
-import { Weather } from '../Weather/Weather';
+import Weather from '../Components/Weather/Weather';
 
 let vh = window.innerHeight * 0.01;
 document.documentElement.style.setProperty('--vh', `${vh}px`);
 
 export const Main = () => {
-  const {tasks, calendar, userSettings} = useSelector(state => state.sidebarReducer)
+  const {tasks, calendar, userSettings, weather} = useSelector(state => state.sidebarReducer)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -34,8 +34,9 @@ export const Main = () => {
       <SidebarContainer isOpen={userSettings} close={closeUserSettings}>
         <UserSettings />
       </SidebarContainer>
-
-      <Weather />
+      <SidebarContainer isOpen={weather} close={closeWeather}>
+        <Weather />
+      </SidebarContainer>
     </Container>
   )
 }

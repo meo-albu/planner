@@ -5,7 +5,7 @@ import { Burger } from './Buttons/Burger'
 import { TodoButton } from './Buttons/TodoButton'
 import { CalendarButton } from './Buttons/CalendarButton'
 import { UserButton } from './Buttons/UserButton'
-import {openTasks, openCalendar, closeCalendar, closeTasks, openUserSettings, closeUserSettings} from '../../Store/actions/sidebarActions'
+import {openTasks, openCalendar, closeCalendar, closeTasks, openUserSettings, closeUserSettings, openWeather, closeWeather} from '../../Store/actions/sidebarActions'
 
 export const Menu = () => {
   const [expanded, setExpanded] = useState(false)
@@ -18,13 +18,16 @@ export const Menu = () => {
       <Button darkTheme={darkTheme} onClick={() => setExpanded(!expanded)} style={{alignSelf: 'flex-start'}}>
         <Burger expanded={expanded} />
       </Button>
-      <Button expanded={expanded} darkTheme={darkTheme} onClick={() => {dispatch(openTasks()); dispatch(closeCalendar()); dispatch(closeUserSettings()); setExpanded(false)} }>
+      <Button expanded={expanded} darkTheme={darkTheme} onClick={() => {dispatch(openTasks()); dispatch(closeWeather()); dispatch(closeCalendar()); dispatch(closeUserSettings()); setExpanded(false)} }>
         <TodoButton /> {expanded && 'Tasks'}
       </Button>
-      <Button expanded={expanded} darkTheme={darkTheme} onClick={() => {dispatch(openCalendar()); dispatch(closeTasks()); dispatch(closeUserSettings()); setExpanded(false)} }>
+      <Button expanded={expanded} darkTheme={darkTheme} onClick={() => {dispatch(openCalendar()); dispatch(closeWeather()); dispatch(closeTasks()); dispatch(closeUserSettings()); setExpanded(false)} }>
         <CalendarButton /> {expanded && 'Calendar'}
       </Button>
-      <Button expanded={expanded} darkTheme={darkTheme} style={{marginTop: 'auto'}} onClick={() => {dispatch(openUserSettings()); dispatch(closeCalendar()); dispatch(closeTasks()); setExpanded(false)} } >
+      <Button expanded={expanded} darkTheme={darkTheme} onClick={() => {dispatch(closeUserSettings()); dispatch(closeCalendar()); dispatch(closeTasks()); dispatch(openWeather()); setExpanded(false)} } >
+        <UserButton /> {expanded && 'User'}
+      </Button>
+      <Button expanded={expanded} darkTheme={darkTheme} style={{marginTop: 'auto'}} onClick={() => {dispatch(openUserSettings()); dispatch(closeWeather()); dispatch(closeCalendar()); dispatch(closeTasks()); setExpanded(false)} } >
         <UserButton /> {expanded && 'User'}
       </Button>
     </Container>
