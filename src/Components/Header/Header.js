@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import app from '../../Auth/firebase'
 import {logoutUser} from '../../Store/actions/userActions'
 import { Link } from 'react-router-dom'
+import Button from '../_Reusable/Button/Button'
 
 export const Header = () => {
   const loggedIn = useSelector(state => state.userReducer.loggedIn)
@@ -49,13 +50,4 @@ const Logo = styled.div`
   font-weight: 900;
   color: ${({theme}) => theme.primary};
   pointer-events: none;
-`
-
-const Button = styled.button`
-  padding: 10px 20px;
-  border: 0;
-  background: ${({theme}) => theme.primary};
-  color: #fff;
-  border-radius: 3px;
-  cursor: pointer;
 `

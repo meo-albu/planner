@@ -7,9 +7,13 @@ import { closeCalendar, closeTasks, closeUserSettings, closeWeather } from '../S
 import Tasks from '../Components/Tasks/Tasks';
 import { UserSettings } from '../Components/UserSettings/UserSettings';
 import { getTasks } from '../Store/actions/taskActions';
+import { HTML5Backend } from 'react-dnd-html5-backend'
+import { TouchBackend } from 'react-dnd-touch-backend'
+import { DndProvider } from 'react-dnd'
 
 import { CalendarContainer } from '../Components/Calendar/CalendarContainer';
 import Weather from '../Components/Weather/Weather';
+import Board from '../Components/Board/Board';
 
 let vh = window.innerHeight * 0.01;
 document.documentElement.style.setProperty('--vh', `${vh}px`);
@@ -37,6 +41,12 @@ export const Main = () => {
       <SidebarContainer isOpen={weather} close={closeWeather}>
         <Weather />
       </SidebarContainer>
+
+      <DndProvider backend={HTML5Backend}>
+         <DndProvider backend={TouchBackend}>
+            <Board />
+         </DndProvider>
+      </DndProvider>
     </Container>
   )
 }
@@ -44,12 +54,12 @@ export const Main = () => {
 const Container = styled.div`
   background: ${({theme}) => theme.background};
   color: ${({theme}) => theme.color};
-  padding: 130px 10% 30px;
+  padding: 70px 0 0 70px;
   position:relative;
-  height: 100vh;
   height: calc(var(--vh, 1vh) * 100);
+  height: 100vh;
 
   @media only screen and (max-width: 700px) {
-    padding: 100px 5% 30px 65px;
+    padding: 70px 0 0 50px;
   }
 `

@@ -4,6 +4,7 @@ import app from '../../Auth/firebase'
 import * as firebase from 'firebase/app'
 import 'firebase/auth'
 import { useSelector } from 'react-redux'
+import Button from '../_Reusable/Button/Button'
 
 export const ChangePassword = (props) => {
   const darkTheme = useSelector(state => state.themeReducer.darkTheme)
@@ -154,18 +155,7 @@ const Container = styled.div`
         }
       }
     }
-    }
   }
-`
-
-const Button = styled.button`
-  padding: 10px 20px;
-  border: 0;
-  background: ${({theme}) => theme.primary};
-  color: #fff;
-  border-radius: 3px;
-  border: 1px solid ${({theme}) => theme.primary};
-  cursor: pointer;
 `
 
 const ErrorMessage = styled.span`

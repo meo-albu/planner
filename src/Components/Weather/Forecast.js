@@ -8,7 +8,6 @@ import { Today } from './Today'
 export const Forecast = ({forecast, children}) => {
   const {darkTheme} = useSelector(state => state.themeReducer)
   const biggestTemp = forecast.forecastData.daily.reduce((p, v) => (p.temp.day > v.temp.day ? p : v));
-  console.log(forecast)
   return (
     <Container>
       <Bg />
@@ -70,6 +69,7 @@ const Daily = styled.div`
   }
 
   img {
+      display: block;
       width: 40px;
       filter: ${({darkTheme}) => darkTheme 
          ? 'invert(69%) sepia(7%) saturate(2900%) hue-rotate(180deg) brightness(104%) contrast(101%)' 

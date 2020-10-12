@@ -4,7 +4,7 @@ const defaultState = {
   tasks: false,
   calendar: false,
   userSettings: false,
-  weather: true
+  weather: false
 }
 
 export const sidebarReducer = (state = defaultState, action) => {

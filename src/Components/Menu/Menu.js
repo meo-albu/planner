@@ -6,6 +6,7 @@ import { TodoButton } from './Buttons/TodoButton'
 import { CalendarButton } from './Buttons/CalendarButton'
 import { UserButton } from './Buttons/UserButton'
 import {openTasks, openCalendar, closeCalendar, closeTasks, openUserSettings, closeUserSettings, openWeather, closeWeather} from '../../Store/actions/sidebarActions'
+import { WeatherButton } from './Buttons/WeatherButton'
 
 export const Menu = () => {
   const [expanded, setExpanded] = useState(false)
@@ -25,7 +26,7 @@ export const Menu = () => {
         <CalendarButton /> {expanded && 'Calendar'}
       </Button>
       <Button expanded={expanded} darkTheme={darkTheme} onClick={() => {dispatch(closeUserSettings()); dispatch(closeCalendar()); dispatch(closeTasks()); dispatch(openWeather()); setExpanded(false)} } >
-        <UserButton /> {expanded && 'User'}
+        <WeatherButton /> {expanded && 'Weather'}
       </Button>
       <Button expanded={expanded} darkTheme={darkTheme} style={{marginTop: 'auto'}} onClick={() => {dispatch(openUserSettings()); dispatch(closeWeather()); dispatch(closeCalendar()); dispatch(closeTasks()); setExpanded(false)} } >
         <UserButton /> {expanded && 'User'}

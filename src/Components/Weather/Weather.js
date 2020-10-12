@@ -4,6 +4,7 @@ import LocationMarkIcon from './Icons/LocationMarkIcon'
 import LocationIcon from './Icons/LocationIcon'
 import WeatherImg from './Icons/WeatherImg'
 import { Forecast } from './Forecast'
+import Button from '../_Reusable/Button/Button'
 
 const Weather = () => {
   const [forecast, setForecast] = useState(null)
@@ -60,13 +61,13 @@ const Weather = () => {
     <Container>
       {WeatherLocation.lat ? 
         forecast && <Forecast forecast={forecast}>
-           <button onClick={() => setWeatherLocation('')}>change city</button>
+           <Button onClick={() => setWeatherLocation('')}>change city</Button>
         </Forecast>
         :
         <>
           <WeatherImg />
           When bees stay close to the hive, <nobr>rain is close by.</nobr>
-          <span>Keep in mind the weather when you are planning your day</span>
+          <span>Keep in mind the weather when you are <nobr>planning your day</nobr></span>
 
           <div className="getLocation" >
             <LocationMarkIcon />
@@ -74,7 +75,11 @@ const Weather = () => {
               <input type="text" placeholder="Enter location" value={Query} onChange={setLocation} />
               <AutoComplete>
                 {Results.map(result => {
-                  return <div key={result.fields.geoname_id} onClick={() => setWeather(result.fields.latitude, result.fields.longitude)}>{result.fields.name}, {result.fields.country_code}</div>
+                  return <div 
+                           key={result.fields.geoname_id} 
+                           onClick={() => setWeather(result.fields.latitude, result.fields.longitude)}>
+                              {result.fields.name}, {result.fields.country_code}
+                     </div>
                 })}
               </AutoComplete>
             </form>

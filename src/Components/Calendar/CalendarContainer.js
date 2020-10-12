@@ -9,6 +9,7 @@ import { NoEventImage } from './NoEventImage';
 import CloseEditIcon from '../Tasks/Icons/CloseEditIcon';
 import { useSelector } from 'react-redux';
 import { gapi } from 'gapi-script';
+import Button from '../_Reusable/Button/Button';
 
 export const CalendarContainer = () => {
 
@@ -102,7 +103,7 @@ export const CalendarContainer = () => {
 
       : <Permission>
           <p>Planner needs permission to access your Google Calendar</p>
-          <button onClick={authorizeUser}>Authorize</button>
+          <Button onClick={authorizeUser}>Authorize</Button>
         </Permission>}
 
     </Container>
@@ -113,25 +114,10 @@ const Permission = styled.div`
   margin-top: 25px;
   padding: 10px 15px 25px;
   font-size: 14px;
+  text-align: center;
   
   p {
     margin: 0 0 20px;
-    text-align: center;
-  }
-
-  button {
-    padding: 7px 15px;
-    border-radius: 3px;
-    border: 0;
-    background: ${({theme}) => theme.primary};
-    color: white;
-    display: block;
-    margin: 0 auto;
-    cursor: pointer;
-
-    :hover {
-      background: ${({theme}) => theme.secondary};
-    }
   }
 `
 

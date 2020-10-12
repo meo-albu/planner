@@ -9,6 +9,7 @@ import { setUser } from '../../Store/actions/userActions'
 import { setLoader, stopLoader } from '../../Store/actions/loaderActions'
 import { ChangePassword } from './ChangePassword'
 import { DarkTheme } from '../DarkTheme'
+import Button from '../_Reusable/Button/Button'
 
 export const UserSettings = (props) => {
   const user = useSelector(state => state.userReducer.user)
@@ -139,14 +140,4 @@ const Image = styled.div`
     width: 100%;
     height: 100%;
   }
-`
-
-const Button = styled.button`
-  padding: 10px 20px;
-  border: 0;
-  background: ${({theme}) => theme.primary};
-  color: #fff;
-  border-radius: 3px;
-  border: 1px solid ${({theme}) => theme.primary};
-  cursor: pointer;
 `
