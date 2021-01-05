@@ -7,7 +7,7 @@ import { Loader } from './Components/Loader'
 import app from './Auth/firebase';
 import {setUser} from './Store/actions/userActions'
 import { setLoader, stopLoader } from './Store/actions/loaderActions';
-import { Routes } from './Routes/Routes';
+import { Routes } from './Routes/Routes'
 
 function App() {
   const theme = useSelector(state => state.themeReducer.theme)

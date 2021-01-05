@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components'
-import { Menu } from '../Components/Menu/Menu'
 import { SidebarContainer } from '../Components/Sidebar/SidebarContainer';
 import { closeCalendar, closeTasks, closeUserSettings, closeWeather } from '../Store/actions/sidebarActions';
 import Tasks from '../Components/Tasks/Tasks';
@@ -14,6 +13,7 @@ import { DndProvider } from 'react-dnd'
 import { CalendarContainer } from '../Components/Calendar/CalendarContainer';
 import Weather from '../Components/Weather/Weather';
 import Board from '../Components/Board/Board';
+import { Menu } from '../Components/Menu/Menu';
 
 let vh = window.innerHeight * 0.01;
 document.documentElement.style.setProperty('--vh', `${vh}px`);
@@ -28,7 +28,7 @@ export const Main = () => {
 
   return (
     <Container>
-      <Menu />
+       <Menu />
       <SidebarContainer isOpen={tasks} close={closeTasks}>
         <Tasks />
       </SidebarContainer>

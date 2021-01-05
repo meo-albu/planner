@@ -31,7 +31,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 10%;
+  padding: 20px 85px;
   box-shadow: 0 0 10px ${({theme}) => theme.shadow};
   color: ${({theme}) => theme.color};
   font-size: 14px;

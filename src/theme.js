@@ -3,7 +3,7 @@ export const darkTheme = {
   color: '#fff',
   primary: '#0274CB',
   secondary: '#8AC0FF',
-  shadow: 'rgba(0, 0, 0, 0.3)'
+  shadow: 'rgba(0, 0, 0, 0.1)'
 }
 
 export const lightTheme = {

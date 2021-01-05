@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import {useDrop} from 'react-dnd'
+import AddCard from '../Card/AddCard'
 
 const Stage = (props) => {
 
@@ -13,6 +14,7 @@ const Stage = (props) => {
    return (
       <Container ref={drop} isOver={isOver}>
          {props.children}
+         <AddCard />
       </Container>
    )
 }
@@ -20,7 +22,6 @@ const Stage = (props) => {
 export default Stage
 
 const Container = styled.div`
-   margin: 25px;
    // background: ${({isOver}) => isOver ? 'grey' : 'white'};
    font-weight: 700;
    width: 250px;

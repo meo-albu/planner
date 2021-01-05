@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import {useSelector} from 'react-redux'
 
-const AddCard = (props) => {
+const AddStage = (props) => {
    const {primary} = useSelector(state => state.themeReducer.theme)
    return (
       <Container onClick={props.onClick}>
@@ -12,25 +12,26 @@ const AddCard = (props) => {
             <path id="Path_26" d="M12,18h5.781" transform="translate(-7.665 -10.774)" fill="none" stroke={primary} strokeLinecap="round" strokeLinejoin="round" strokeWidth="1"/>
             </g>
          </svg>
-         Add Card
+         Add New Stage
       </Container>
    )
 }
 
-export default AddCard
+export default AddStage
 
 const Container = styled.div`
    display: flex;
    align-items: center;
-   padding: 10px 0;
+   padding: 10px;
    cursor: pointer;
-   // background: rgba(0, 0, 0, 0.02);
+   background: rgba(0, 0, 0, 0.02);
    border-radius: 3px;
    font-size: 0.8em;
    font-weight: 400;
    transition: background 0.1s;
    margin-top: 20px;
    opacity: 0.7;
+   width: 200px;
 
    svg {
       margin-right: 10px;
