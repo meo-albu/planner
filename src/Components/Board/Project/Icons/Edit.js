@@ -15,6 +15,5 @@ const EditIcon = () => {
 export default EditIcon
 
 const Container = styled.svg`
-  margin: 0 0 0 auto !important;
   cursor: pointer;
 ` 

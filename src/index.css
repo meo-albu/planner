@@ -19,6 +19,16 @@ body {
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.6;
   font-size: 14px;
+  height: 100%;
+  min-height: -webkit-fill-available;
+}
+
+html {
+  height: -webkit-fill-available;
+}
+
+#root {
+   height: 100%;
 }
 
 code {

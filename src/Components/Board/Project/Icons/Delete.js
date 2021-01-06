@@ -15,6 +15,5 @@ const DeleteIcon = () => {
 export default DeleteIcon
 
 const Container = styled.svg`
-  margin: 0 0 0 auto !important;
   cursor: pointer;
 ` 

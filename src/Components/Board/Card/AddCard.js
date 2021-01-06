@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 import {useSelector} from 'react-redux'
 
-const AddCard = (props) => {
+const AddCard = ({onClick}) => {
    const {primary} = useSelector(state => state.themeReducer.theme)
    return (
-      <Container onClick={props.onClick}>
+      <Container onClick={onClick}>
          <svg width="15" height="15" viewBox="0 0 15.451 15.451">
             <g id="add" transform="translate(0.5 0.5)">
             <path id="Path_24" d="M17.451,10.226A7.226,7.226,0,1,1,10.226,3,7.226,7.226,0,0,1,17.451,10.226Z" transform="translate(-3 -3)" fill="none" stroke={primary} strokeLinecap="round" strokeLinejoin="round" strokeWidth="1"/>

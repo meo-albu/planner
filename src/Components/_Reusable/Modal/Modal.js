@@ -1,12 +1,16 @@
 import styled from 'styled-components'
+import { motion } from 'framer-motion'
 
 const Modal = ({setModal, children}) => {
    return (
       <Container>
          <span id="closeModal" onClick={() => setModal(false)} />
-         <div>
+         <motion.div
+            initial={{y: -15}}
+            animate={{y: 0}}
+         >
             {children}
-         </div>
+         </motion.div>
       </Container>
    )
 }

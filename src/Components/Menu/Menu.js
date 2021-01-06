@@ -36,7 +36,7 @@ export const Menu = () => {
 }
 
 const Container = styled.div`
-  background: ${({theme}) => theme.background};
+  background: ${({theme}) => theme.menu};
   color: ${({theme}) => theme.color};
   height: 100%;
   padding: 100px 5px 20px;

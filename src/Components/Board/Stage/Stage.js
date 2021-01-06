@@ -1,20 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import {useDrop} from 'react-dnd'
 import AddCard from '../Card/AddCard'
+import AddCardModal from '../Card/AddCardModal'
+import Card from '../Card/Card'
 
-const Stage = (props) => {
+const Stage = ({title, stage, moveCard, stageId, cards}) => {
 
    const [{isOver}, drop] = useDrop({
     accept: 'card',
     collect: monitor => ({isOver: !!monitor.isOver()}), 
-    drop: (item, monitor) => props.moveCard(item.id, props.stage)
+    drop: (item, monitor) => moveCard(item.id, stage)
   })
+
+  const [cardModal, setCardModal] = useState(false)
 
    return (
       <Container ref={drop} isOver={isOver}>
-         {props.children}
-         <AddCard />
+         {cardModal && <AddCardModal setCardModal={setCardModal} stageId={stageId} cards={cards} /> }
+         {title}
+         {cards.map(card => {
+            return <Card 
+                     key={card.cardId} 
+                     cardId={card.cardId} 
+                     title={card.title} 
+                     description={card.description} />
+         })}
+         <AddCard onClick={() => setCardModal(true)} />
       </Container>
    )
 }

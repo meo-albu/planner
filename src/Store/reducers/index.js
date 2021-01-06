@@ -5,6 +5,7 @@ import {userReducer} from './userReducer'
 import {sidebarReducer} from './sidebarReducer'
 import {taskReducer} from './taskReducer'
 import {projectReducer} from './projectReducer'
+import {smallMenuReducer} from './smallMenuReducer'
 
 const rootReducer = combineReducers({
   themeReducer,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   userReducer,
   sidebarReducer,
   taskReducer,
-  projectReducer
+  projectReducer,
+  smallMenuReducer
 })
 
 export default rootReducer

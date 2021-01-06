@@ -24,7 +24,7 @@ export const Header = () => {
 
 const Container = styled.div`
   position: fixed;
-  background: ${({theme}) => theme.background};
+  background: ${({theme}) => theme.menu};
   top: 0;
   left: 0;
   right: 0;

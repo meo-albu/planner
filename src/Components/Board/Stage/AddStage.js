@@ -24,14 +24,13 @@ const Container = styled.div`
    align-items: center;
    padding: 10px;
    cursor: pointer;
-   background: rgba(0, 0, 0, 0.02);
+   background: rgba(0, 0, 0, 0.1);
    border-radius: 3px;
    font-size: 0.8em;
    font-weight: 400;
    transition: background 0.1s;
-   margin-top: 20px;
    opacity: 0.7;
-   width: 200px;
+   min-width: 220px;
 
    svg {
       margin-right: 10px;

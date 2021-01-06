@@ -56,8 +56,7 @@ const Container = styled.div`
   color: ${({theme}) => theme.color};
   padding: 70px 0 0 70px;
   position:relative;
-  height: calc(var(--vh, 1vh) * 100);
-  height: 100vh;
+  height: 100%;
 
   @media only screen and (max-width: 700px) {
     padding: 70px 0 0 50px;

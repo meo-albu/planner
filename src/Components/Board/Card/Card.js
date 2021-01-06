@@ -3,7 +3,7 @@ import { useDrag } from 'react-dnd'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 
-const Card = (props) => {
+const Card = ({title, description, cardId}) => {
    // const [Cards, setCards] = useState([])
 
    // const moveCard = (id, whereTo) => {
@@ -16,13 +16,14 @@ const Card = (props) => {
    //    })
    // }
    const [{isDragging}, drag] = useDrag({
-      item: { type: 'card', id: props.id },
+      item: { type: 'card', id: cardId },
       collect: monitor => ({isDragging: !!monitor.isDragging()})
    })
 
    return (
       <Container ref={drag} isDragging={isDragging} drag='y' layout>
-         {props.name}
+         {title}
+         <p>{description}</p>
       </Container>
    )
 }
@@ -36,4 +37,11 @@ const Container = styled(motion.div)`
    cursor: pointer;
    opacity: ${({isDragging}) => isDragging ? 0.2 : 1};
    margin: 10px 0;
+   background:  ${({theme}) => theme.menu};
+
+   p {
+      font-weight: 400;
+      font-size: 0.9em;
+      margin-top: 15px;
+   }
 `
